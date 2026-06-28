@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madison — CS Student & STEM Advocate</title>
+  <meta name="description" content="Portfolio of Madison, Computer Science student at Mississippi Valley State University, IT Intern at MATA, and AI Research Lead." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0B1B2B;
+      --teal:    #1D9E75;
+      --teal-lt: #E1F5EE;
+      --teal-dk: #0F6E56;
+      --cream:   #F7F5F0;
+      --gray:    #4A5568;
+      --gray-lt: #E2E8F0;
+      --white:   #FFFFFF;
+      --coral:   #D85A30;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 245, 240, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-lt);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray);
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal) !important;
+      color: var(--white) !important;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--teal-dk) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 55%;
+      height: 120%;
+      background: linear-gradient(135deg, var(--teal-lt) 0%, #9FE1CB 100%);
+      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name .underline-draw {
+      display: inline-block;
+      position: relative;
+    }
+    .hero-name .underline-draw::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+      animation: drawLine 1s ease forwards 0.6s;
+    }
+    @keyframes drawLine {
+      to { width: 100%; }
+    }
+    .hero-title {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .hero-title strong { color: var(--navy); font-weight: 600; }
+    .hero-statement {
+      font-size: 1rem;
+      color: var(--gray);
+      border-left: 3px solid var(--teal);
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #162840; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--teal);
+      border: 1.5px solid var(--teal);
+    }
+    .btn-outline:hover { background: var(--teal); color: var(--white); }
+    .btn-linkedin {
+      background: #0077B5;
+      color: var(--white);
+    }
+    .btn-linkedin:hover { background: #005885; }
+
+    .hero-image { position: relative; z-index: 1; text-align: center; }
+    .profile-frame {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 5px solid var(--white);
+      box-shadow: 0 20px 60px rgba(11, 27, 43, 0.15);
+      overflow: hidden;
+      background: var(--teal-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-placeholder {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .profile-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .badge {
+      background: var(--white);
+      border: 1px solid var(--gray-lt);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 8rem; }
+    section:nth-child(even) { background: var(--white); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .section-subhead {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .about-text p strong { color: var(--navy); }
+    .stats-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .stat-card {
+      background: var(--cream);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+    }
+    .stat-card .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-card .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline { display: flex; flex-direction: column; gap: 2rem; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .timeline-date {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.03em;
+      padding-top: 0.2rem;
+      text-align: right;
+    }
+    .timeline-content {
+      border-left: 1px solid var(--gray-lt);
+      padding-left: 2rem;
+      position: relative;
+    }
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+    .timeline-org {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--coral);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-role {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--gray-lt);
+      border-radius: 10px;
+      padding: 1.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(11, 27, 43, 0.1);
+    }
+    .project-tag {
+      display: inline-block;
+      background: var(--teal-lt);
+      color: var(--teal-dk);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      margin-bottom: 0.9rem;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+    .stack-chip {
+      background: var(--cream);
+      color: var(--navy);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      border: 1px solid var(--gray-lt);
+    }
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .project-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .project-link:hover { text-decoration: underline; }
+    .project-link.disabled { color: var(--gray-lt); cursor: default; pointer-events: none; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      margin-bottom: 0.9rem;
+    }
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .skill-list li {
+      font-size: 0.88rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-list li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: var(--teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── RESUME ── */
+    .resume-section {
+      text-align: center;
+    }
+    .resume-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--gray-lt);
+      border-radius: 10px;
+      padding: 3rem;
+    }
+    .resume-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--teal-lt);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .resume-icon svg { width: 28px; height: 28px; stroke: var(--teal); fill: none; stroke-width: 2; }
+    .resume-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .resume-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .resume-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.82rem; line-height: 1.8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 2rem;
+        text-align: center;
+        min-height: auto;
+        gap: 3rem;
+      }
+      .hero::before { display: none; }
+      .hero-image { order: -1; }
+      .hero-buttons { justify-content: center; }
+      section { padding: 3.5rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-date { text-align: left; }
+    }
+
+    /* ── EDIT NOTICE ── */
+    .edit-notice {
+      background: #FFF9C4;
+      border: 1px solid #F5C518;
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      color: #7D6608;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">M<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resume" class="nav-cta">Resume</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Computer Science · Information Science · STEM</p>
+      <h1 class="hero-name">
+        <span class="underline-draw">Madison</span>
+      </h1>
+      <p class="hero-title">
+        Junior CS Student at <strong>Mississippi Valley State University</strong> ·
+        IT Intern at <strong>MATA</strong> ·
+        AI Research Lead at <strong>SGX3 Coding Institute</strong>
+      </p>
+      <p class="hero-statement">
+        "I build at the intersection of data, AI, and community — driven by a belief that representation in STEM changes what's possible for the next generation."
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a
+          href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-linkedin"
+        >
+          <!-- LinkedIn icon SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="#resume" class="btn btn-outline">Resume / CV</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="profile-frame">
+        <!--
+          PHOTO INSTRUCTIONS:
+          Replace the placeholder below with your professional headshot.
+          1. Add your photo to the same folder as index.html (e.g. photo.jpg)
+          2. Replace the <div class="profile-placeholder"> block with:
+             <img src="photo.jpg" alt="Madison — professional headshot" />
+        -->
+        <div class="profile-placeholder">M</div>
+      </div>
+      <div class="profile-badges">
+        <span class="badge">Miss Junior · MVSU</span>
+        <span class="badge">Student-Athlete · Volleyball</span>
+        <span class="badge">ADMI Member</span>
+        <span class="badge">Distinguished Scholar</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About Me</p>
+    <h2 class="section-heading">Building with purpose.</h2>
+    <p class="section-subhead">A student-athlete, scholar, and technologist — committed to using computing as a vehicle for community impact.</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I am a junior Computer Science student concentrating in Information Science at
+          <strong>Mississippi Valley State University</strong>, where I serve as Miss Junior and
+          compete on the volleyball team as a student-athlete. Originally from the Memphis metro area,
+          I bring both a regional perspective and a global ambition to my work in technology.
+        </p>
+        <p>
+          As an <strong>IT Intern at the Memphis Area Transit Authority (MATA)</strong>, I support
+          enterprise technology operations — from network analysis and systems documentation to
+          transit operator scheduling workflows using Trapeze OPS. I translate complex technical
+          landscapes into clear, structured documentation for decision-makers.
+        </p>
+        <p>
+          Through the <strong>SGX3 Coding Institute 2026</strong>, I serve as <strong>AI Research
+          and Insight Generation Lead</strong> on the BioGraph Futures team, where I architected a
+          batch AI prediction engine using Claude by Anthropic, NetworkX, and Google Colab — applied
+          to a robotics knowledge graph derived from Wikipedia.
+        </p>
+        <p>
+          My aspiration is to be a role model in STEM — demonstrating that curiosity, discipline,
+          and service to community are the most powerful technologies of all.
+        </p>
+      </div>
+      <div class="stats-stack">
+        <div class="stat-card">
+          <div class="stat-num">Junior</div>
+          <div class="stat-label">CS · Information Science · MVSU</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">SGX3 Coding Institute cohort</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">AI Lead</div>
+          <div class="stat-label">BioGraph Futures · SGX3</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">MATA</div>
+          <div class="stat-label">IT Intern · Memphis, TN</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <h2 class="section-heading">Where I've contributed.</h2>
+    <p class="section-subhead">From enterprise IT infrastructure to cutting-edge AI research — a thread of purposeful, applied work.</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026 · Present</div>
+        <div class="timeline-content">
+          <p class="timeline-org">SGX3 Coding Institute</p>
+          <p class="timeline-role">AI Research &amp; Insight Generation Lead — BioGraph Futures</p>
+          <p class="timeline-desc">
+            Architected a batch AI prediction engine in Python using the Anthropic Claude API,
+            NetworkX, and Google Colab, applied to a robotics knowledge graph. Designed three
+            prompt engineering templates (Predecessor, Forward, and Backward) positioning the
+            LLM as historian, futurist, and analyst to generate structured JSON predictions.
+            Converted the pipeline into a shareable Colab notebook and coordinated with
+            teammates on data collection across Wikipedia-sourced biological and robotics
+            concepts.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026 · Present</div>
+        <div class="timeline-content">
+          <p class="timeline-org">Memphis Area Transit Authority (MATA)</p>
+          <p class="timeline-role">IT Intern</p>
+          <p class="timeline-desc">
+            Support enterprise technology operations at a regional transit authority serving
+            Memphis, Tennessee. Responsibilities include network analysis (netstat diagnostics,
+            port behavior), enterprise architecture documentation for MATA's technology
+            ecosystem, and process documentation for transit operator scheduling workflows
+            using Trapeze OPS. Produce professional-grade documentation in structured,
+            Microsoft-style formatting for internal and stakeholder use.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2023 · Present</div>
+        <div class="timeline-content">
+          <p class="timeline-org">Mississippi Valley State University</p>
+          <p class="timeline-role">Student · Miss Junior · Volleyball Student-Athlete</p>
+          <p class="timeline-desc">
+            Pursuing a B.S. in Computer Science with a concentration in Information Science.
+            Honored as a Distinguished Scholar and elected Miss Junior, representing the MVSU
+            junior class in academic and community leadership. Compete on the university
+            volleyball team, balancing athletic excellence with rigorous STEM coursework.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Ongoing</div>
+        <div class="timeline-content">
+          <p class="timeline-org">ADMI</p>
+          <p class="timeline-role">Member</p>
+          <p class="timeline-desc">
+            Active participant in the Association of Computing Machinery (ADMI) — a professional
+            and academic community focused on expanding the computing pipeline for students
+            at Historically Black Colleges and Universities. Engaged in professional development,
+            networking, and STEM advocacy initiatives.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <h2 class="section-heading">Things I've built.</h2>
+    <p class="section-subhead">Applied work spanning AI engineering, data science, transit technology, and enterprise architecture.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <span class="project-tag">AI · Knowledge Graphs</span>
+        <h3 class="project-name">BioGraph Futures — AI Prediction Engine</h3>
+        <p class="project-desc">
+          Designed and built a batch AI prediction pipeline applied to a robotics knowledge graph
+          constructed from Wikipedia. The system uses three custom prompt templates — Predecessor,
+          Forward, and Backward — to query Claude by Anthropic as historian, futurist, and analyst,
+          returning structured JSON predictions about relationships between biological and robotics
+          concepts. Built and packaged as a collaborative Google Colab notebook.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">Anthropic Claude API</span>
+          <span class="stack-chip">NetworkX</span>
+          <span class="stack-chip">Google Colab</span>
+          <span class="stack-chip">JSON</span>
+          <span class="stack-chip">Prompt Engineering</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">View Notebook →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">Enterprise Architecture · Transit</span>
+        <h3 class="project-name">MATA Technology Ecosystem Documentation</h3>
+        <p class="project-desc">
+          Produced professional enterprise architecture documentation for the Memphis Area Transit
+          Authority's technology stack. Delivered structured, Microsoft-style documentation
+          capturing system components, integrations, and the Trapeze OPS transit operator
+          scheduling workflow — including a visual process flowchart for scheduling operations.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">Enterprise Architecture</span>
+          <span class="stack-chip">Trapeze OPS</span>
+          <span class="stack-chip">Process Flowcharts</span>
+          <span class="stack-chip">Technical Writing</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled">Internal Document</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">Networking · IT Operations</span>
+        <h3 class="project-name">Network Traffic Analysis — MATA</h3>
+        <p class="project-desc">
+          Conducted network diagnostic analysis using netstat to evaluate active connections,
+          port states, and protocol behavior within MATA's enterprise environment. Documented
+          findings and port mapping observations to support internal IT operations and security
+          awareness efforts.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">netstat</span>
+          <span class="stack-chip">Network Diagnostics</span>
+          <span class="stack-chip">TCP/IP</span>
+          <span class="stack-chip">IT Operations</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link disabled">Internal Report</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Technical Skills</p>
+    <h2 class="section-heading">Tools &amp; technologies.</h2>
+    <p class="section-subhead">A working toolkit built through coursework, research, and real-world internship experience.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">Languages</p>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>HTML / CSS</li>
+          <li>SQL (learning)</li>
+          <li>Bash / Shell</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">AI &amp; Data Science</p>
+        <ul class="skill-list">
+          <li>Anthropic Claude API</li>
+          <li>Prompt Engineering</li>
+          <li>NetworkX (graphs)</li>
+          <li>scikit-learn</li>
+          <li>pandas</li>
+          <li>Google Colab</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">IT &amp; Systems</p>
+        <ul class="skill-list">
+          <li>Network Diagnostics</li>
+          <li>Trapeze OPS</li>
+          <li>Enterprise Architecture</li>
+          <li>Technical Documentation</li>
+          <li>Process Flowcharts</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Tools &amp; Platforms</p>
+        <ul class="skill-list">
+          <li>GitHub / Git</li>
+          <li>Kaggle</li>
+          <li>Microsoft Office Suite</li>
+          <li>Google Workspace</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="resume-section">
+      <p class="section-label">Resume / CV</p>
+      <h2 class="section-heading">Download my resume.</h2>
+      <div class="resume-card">
+        <div class="resume-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3 class="resume-title">Madison — Resume / CV</h3>
+        <p class="resume-desc">
+          Includes education, technical experience, projects, skills, and leadership roles.
+          Available as a PDF for download or viewing.
+        </p>
+        <div class="edit-notice">
+          📎 Add your resume: Place a file named <code>resume.pdf</code> in the same folder as
+          <code>index.html</code>, then the "Download PDF" button below will work automatically.
+        </div>
+        <div class="resume-buttons">
+          <a href="resume.pdf" download class="btn btn-primary">Download PDF</a>
+          <a href="resume.pdf" target="_blank" class="btn btn-outline">View Online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-name">Madison</p>
+    <p>
+      Computer Science · Information Science · Mississippi Valley State University<br />
+      IT Intern, Memphis Area Transit Authority · AI Research Lead, SGX3 Coding Institute 2026
+    </p>
+    <br />
+    <p>
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:YOUR-EMAIL@example.com">Email</a>
+    </p>
+    <br />
+    <p style="font-size:0.75rem; opacity:0.5;">© 2026 Madison. Built with purpose.</p>
+  </footer>
+
+</body>
+</html>
